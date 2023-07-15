@@ -4,4 +4,17 @@
   height: 200px;
   margin: 10px;
   display: inline-block;
+  z-index: 0;
 }
+
+#intro-card{
+  position: absolute;
+  background-color: darkgray;
+  z-index: 4;
+  height: 75%;
+  width:75%;
+  padding: 25%;
+  text-align: center;
+  list-style-position: inside;
+}
+

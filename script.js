@@ -1,5 +1,5 @@
 const gameContainer = document.getElementById("game");
-
+const button = document.querySelector("BUTTON");
 const COLORS = [
   "red",
   "blue",
@@ -59,6 +59,7 @@ function createDivsForColors(colorArray) {
 }
 
 let selected = [];
+let matched = []
 // TODO: Implement this function!
 function handleCardClick(event) {
   // you can use event.target to see which element was clicked
@@ -82,11 +83,17 @@ function handleCardClick(event) {
 
   }
 
+  //implement this for the end game
+  if (matched.length === 8 && selected.length === 2){
+    console.log("you win");
+  }
 }
 
 function check(){
   //if the two selected cards a match then clear them
   if(selected[0].className === selected[1].className){
+    matched.push(selected[0]);
+    matched.push(selected[1]);
     selected.pop();
     selected.pop();
   }
@@ -104,6 +111,10 @@ function clear(){
   selected.pop();
   
 }
+
+button.addEventListener('click', function(e){
+  button.parentElement.remove();
+})
 
 // when the DOM loads
 createDivsForColors(shuffledColors);
