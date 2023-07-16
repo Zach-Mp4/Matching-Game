@@ -13,12 +13,13 @@ let num = Math.floor(Math.random() * 10);
 while (num % 2 != 0 || num === 0 || num === 1){
   num = Math.floor(Math.random() * 10);
 }
+let ran = `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
 const OGCOLORS = [
-  "red",
-  "blue",
-  "green",
-  "orange",
-  "purple",
+  `rgb(${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)})`,
+  `rgb(${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)})`,
+  `rgb(${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)})`,
+  `rgb(${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)})`,
+  `rgb(${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)})`,
 ];
 let COLORS = [];
 for (let i = 0; i < num /2; i++){
