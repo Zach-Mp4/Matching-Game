@@ -50,21 +50,27 @@ let cards = [];
 // this function loops over the array of colors
 // it creates a new div and gives it a class with the value of the color
 // it also adds an event listener for a click for each card
+let num = Math.floor(Math.random() * 10);
+while (num % 2 != 0 || num === 0){
+  num = Math.floor(Math.random() * 10);
+}
 function createDivsForColors(colorArray) {
-  for (let color of colorArray) {
-    // create a new div
-    const newDiv = document.createElement("div");
-
-    // give it a class attribute for the value we are looping over
-    newDiv.classList.add(color);
-    newDiv.style.backgroundColor = "white";
-
-    // call a function handleCardClick when a div is clicked on
-    newDiv.addEventListener("click", handleCardClick);
-
-    // append the div to the element with an id of game
-    cards.push(newDiv);
-    gameContainer.append(newDiv);
+  if (num % 2 === 0){
+    for (let color = 0; color < num; color++) {
+      // create a new div
+      const newDiv = document.createElement("div");
+  
+      // give it a class attribute for the value we are looping over
+      newDiv.classList.add(COLORS[color]);
+      newDiv.style.backgroundColor = "white";
+  
+      // call a function handleCardClick when a div is clicked on
+      newDiv.addEventListener("click", handleCardClick);
+  
+      // append the div to the element with an id of game
+      cards.push(newDiv);
+      gameContainer.append(newDiv);
+    }
   }
 }
 
