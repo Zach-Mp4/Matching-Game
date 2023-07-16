@@ -9,6 +9,10 @@ let bestScore = 0;
 const best = document.getElementById("best-score");
 bestScore = parseInt(localStorage.bestScore);
 best.innerText = "Best Score: " + bestScore;
+function rand(){
+  let r = `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
+  return r;
+} 
 const COLORS = [
   "red",
   "blue",
