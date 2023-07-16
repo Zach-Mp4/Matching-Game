@@ -3,6 +3,12 @@ const button = document.querySelector("BUTTON");
 const splash = document.getElementById("intro-card");
 const body = document.querySelector("BODY");
 const welcome = document.getElementById("welcome");
+let scoreCount = 0;
+const score = document.getElementById("score");
+let bestScore = 0;
+const best = document.getElementById("best-score");
+bestScore = parseInt(localStorage.bestScore);
+best.innerText = "Best Score: " + bestScore;
 const COLORS = [
   "red",
   "blue",
@@ -72,6 +78,9 @@ function handleCardClick(event) {
     console.log("you just clicked", event.target);
     event.target.style.backgroundColor = event.target.className;
     selected.push(event.target);
+    scoreCount += 1;
+    score.innerText = scoreCount;
+
 
 
   }
@@ -84,7 +93,8 @@ function handleCardClick(event) {
       event.target.style.backgroundColor = event.target.className;
       selected.push(event.target);
     }
-
+    scoreCount += 1;
+    score.innerText = scoreCount;
   }
 
   //implement this for the end game
@@ -104,6 +114,13 @@ function handleCardClick(event) {
     for (let i = 0; i < j; i++){
        matched.pop();
     }
+    if (scoreCount < bestScore || bestScore === 0){
+      bestScore = scoreCount;
+      best.innerText = "Best Score: " + bestScore;
+      localStorage.setItem('bestScore', bestScore);
+    }
+    scoreCount = 0;
+    score.innerText = scoreCount;
   }
 
 }
