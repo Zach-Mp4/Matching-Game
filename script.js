@@ -9,23 +9,23 @@ let bestScore = 0;
 const best = document.getElementById("best-score");
 bestScore = parseInt(localStorage.bestScore);
 best.innerText = "Best Score: " + bestScore;
-function rand(){
-  let r = `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
-  return r;
-} 
-const COLORS = [
+let num = Math.floor(Math.random() * 10);
+while (num % 2 != 0 || num === 0 || num === 1){
+  num = Math.floor(Math.random() * 10);
+}
+const OGCOLORS = [
   "red",
   "blue",
   "green",
   "orange",
   "purple",
-  "red",
-  "blue",
-  "green",
-  "orange",
-  "purple"
 ];
-
+let COLORS = [];
+for (let i = 0; i < num /2; i++){
+  for (let k = 0; k < 2; k++){
+    COLORS.push(OGCOLORS[i]);
+  }
+}
 // here is a helper function to shuffle an array
 // it returns the same array with values shuffled
 // it is based on an algorithm called Fisher Yates if you want to research more
@@ -54,10 +54,6 @@ let cards = [];
 // this function loops over the array of colors
 // it creates a new div and gives it a class with the value of the color
 // it also adds an event listener for a click for each card
-let num = Math.floor(Math.random() * 10);
-while (num % 2 != 0 || num === 0){
-  num = Math.floor(Math.random() * 10);
-}
 function createDivsForColors(colorArray) {
   if (num % 2 === 0){
     for (let color = 0; color < num; color++) {
@@ -108,7 +104,7 @@ function handleCardClick(event) {
   }
 
   //implement this for the end game
-  if (matched.length === 8 && selected.length === 2){
+  if (matched.length === num - 2 && selected.length === 2){
     console.log("you win");
     welcome.innerText = "YOU WIN!";
     button.innerText = "play again?"
