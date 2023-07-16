@@ -1,5 +1,8 @@
 const gameContainer = document.getElementById("game");
 const button = document.querySelector("BUTTON");
+const splash = document.getElementById("intro-card");
+const body = document.querySelector("BODY");
+const welcome = document.getElementById("welcome");
 const COLORS = [
   "red",
   "blue",
@@ -37,7 +40,7 @@ function shuffle(array) {
 }
 
 let shuffledColors = shuffle(COLORS);
-
+let cards = [];
 // this function loops over the array of colors
 // it creates a new div and gives it a class with the value of the color
 // it also adds an event listener for a click for each card
@@ -54,6 +57,7 @@ function createDivsForColors(colorArray) {
     newDiv.addEventListener("click", handleCardClick);
 
     // append the div to the element with an id of game
+    cards.push(newDiv);
     gameContainer.append(newDiv);
   }
 }
@@ -86,7 +90,22 @@ function handleCardClick(event) {
   //implement this for the end game
   if (matched.length === 8 && selected.length === 2){
     console.log("you win");
+    welcome.innerText = "YOU WIN!";
+    button.innerText = "play again?"
+    body.prepend(splash);
+    for (let i = 0; i < cards.length; i++){
+      cards[i].style.backgroundColor = "white";
+    }
+    let j = selected.length;
+    for (let i = 0; i < j; i++){
+       selected.pop();
+    }
+    j = matched.length;
+    for (let i = 0; i < j; i++){
+       matched.pop();
+    }
   }
+
 }
 
 function check(){
