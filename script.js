@@ -7,20 +7,21 @@ let scoreCount = 0;
 const score = document.getElementById("score");
 let bestScore = 0;
 const best = document.getElementById("best-score");
-bestScore = parseInt(localStorage.bestScore);
+let temp = [];
+if(parseInt(localStorage.bestScore) > 0){
+  bestScore = parseInt(localStorage.bestScore);
+}
 best.innerText = "Best Score: " + bestScore;
-let num = Math.floor(Math.random() * 10);
-while (num % 2 != 0 || num === 0 || num === 1){
-  num = Math.floor(Math.random() * 10);
+let num = Math.floor(Math.random() * 20);
+while (num % 2 != 0 || num === 0 || num === 1 || num == 2){
+  num = Math.floor(Math.random() * 20);
 }
 let ran = `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
-const OGCOLORS = [
-  `rgb(${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)})`,
-  `rgb(${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)})`,
-  `rgb(${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)})`,
-  `rgb(${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)})`,
-  `rgb(${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)})`,
-];
+let OGCOLORS = [];
+
+for (let i = 0; i < num / 2; i++){
+  OGCOLORS.push(`rgb(${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)})`);
+}
 let COLORS = [];
 for (let i = 0; i < num /2; i++){
   for (let k = 0; k < 2; k++){
@@ -105,7 +106,7 @@ function handleCardClick(event) {
   }
 
   //implement this for the end game
-  if (matched.length === num - 2 && selected.length === 2){
+  if ((matched.length === num - 2 && selected.length === 2) || matched.length === num){
     console.log("you win");
     welcome.innerText = "YOU WIN!";
     button.innerText = "play again?"
@@ -148,8 +149,17 @@ function check(){
 
 function clear(){
   for (let i = 0; i < selected.length; i++){
-    selected[i].style.backgroundColor = "white";
+    temp.push(selected[i]);
   }
+  setTimeout(function(){
+    for (let i = 0; i < temp.length; i++){
+      temp[i].style.backgroundColor = "white";
+    }
+    for (let i = 0; i < temp.length; i++){
+      temp.pop();
+    }
+    
+  }, 1000);
   selected.pop();
   selected.pop();
   
